@@ -24,3 +24,6 @@ hs_err_pid*
 
 #Don't know what this is, seems to be specific to Macintosh. We don't need this anyways.
 .DS_Store
+
+#Ignore .idea directory created by Intellij projects
+.idea/

@@ -21,3 +21,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Don't know what this is, seems to be specific to Macintosh. We don't need this anyways.
+.DS_Store
+
+#We don't need idea project files
+.idea/

@@ -1,15 +1,19 @@
 public class Staircase {
 
     // Complete the staircase function below.
+    //if n = 6
     static void staircase(int n) {
-        for(int i=0;i<n;i++) {
+        //i = 6 - 1 = 5, 5 >= 0; i--
+        for(int i=n-1;i>=0;i--) {
+            //k = 6 - 5 = 1;
             int k = n - i;
             //Print blanks
-            for(int j=0;j<k;j++) {
+            //j = 5; j > 1; j--
+            for(int j=n-1 ;j>=k;j--) {
                 System.out.print(" ");
             }
-            //Print numbers
-            for(int j=k;j<=n;j++) {
+            //Print #
+            for(int j=k;j>0;j--) {
                 System.out.print("#");
             }
             System.out.println();
@@ -17,7 +21,7 @@ public class Staircase {
     }
 
     public static void main(String[] args) {
-        staircase(10);
+        staircase(6);
     }
 }
 

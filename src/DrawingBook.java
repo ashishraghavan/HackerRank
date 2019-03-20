@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DrawingBook {
 
@@ -8,57 +6,55 @@ public class DrawingBook {
      * Complete the pageCount function below.
      */
     static int pageCount(int pageCount, int pageToFetch) {
-        int minPageNo = Integer.MAX_VALUE;
-        for(int times=0;times<pageCount;times++) {
-            List<Integer> noOfPages = new ArrayList<>();
-            int firstPage = times * 2;
-            int secondPage = firstPage + 1;
-            noOfPages.add(firstPage);
-            noOfPages.add(secondPage);
-            if(noOfPages.contains(pageToFetch)) {
-                if(times < minPageNo) {
-                    minPageNo = times;
+        int forwardPageCount = 0;
+        int backwardPageCount = 0;
+        //forward page count starts
+        int turns = 0;
+        int currentPage = 1;
+        if(currentPage == pageToFetch) {
+            forwardPageCount = turns;
+        }
+        //current page will be 2 at this point
+        //turns will be 2 at this point.
+        //First time, we open the book, it will open page no 1
+        //from second time onwards we keep opening the pages
+        //till we reach the page that we want.
+        int previousPage = currentPage;
+        for(turns = turns + 1;turns<pageCount;turns++) {
+            currentPage = previousPage + 1;
+            int nextPage = currentPage + 1;
+            if(currentPage == pageToFetch || nextPage == pageToFetch) {
+                forwardPageCount = turns;
+                break;
+            }
+            previousPage = nextPage;
+        }
+
+        //Backward page count starts
+        turns = 0;
+        //If page count is odd,
+        if(pageCount %2 != 0) {
+            currentPage = pageCount - 1;
+        } else {
+            currentPage = pageCount;
+        }
+        int previousPageBackward;
+        if(currentPage == pageToFetch) {
+            backwardPageCount = turns;
+        } else {
+            int futurePage = currentPage;
+            for(turns = turns + 1;turns<pageCount;turns++){
+                previousPageBackward = futurePage - 1;
+                currentPage = previousPageBackward - 1;
+                if(currentPage == pageToFetch || previousPageBackward == pageToFetch) {
+                    backwardPageCount = turns;
+                    break;
                 }
+                futurePage = currentPage;
             }
         }
-        //If page count is odd
-        if(pageCount % 2 != 0) {
-            int times = 0;
-            int pageNoCount = 0;
-            List<Integer> pageCountList = new ArrayList<>();
-            pageCountList.add(pageCount);
-            pageCountList.add(pageCount - 1);
-            while(pageNoCount != pageToFetch && (pageNoCount <= pageCount)) {
-                pageCountList.add(pageCount - (times * 2));
-                pageCountList.add(pageCount - ((times * 2)+1));
-                if(pageCountList.contains(pageToFetch)) {
-                    if(times < minPageNo) {
-                        minPageNo = times;
-                    }
-                }
-                pageNoCount++;
-                times++;
-            }
-        }
-        //If page count is even
-        if(pageCount %2 == 0) {
-            int times = 0;
-            int pageNoCount = 0;
-            List<Integer> pageCountList = new ArrayList<>();
-            pageCountList.add(pageCount);
-            while(pageNoCount != pageToFetch && (pageNoCount <= pageCount)) {
-                pageCountList.add(pageCount - times);
-                pageCountList.add(pageCount - times - 1);
-                if(pageCountList.contains(pageToFetch)) {
-                    if(times < minPageNo) {
-                        minPageNo = times;
-                    }
-                }
-                pageNoCount++;
-                times++;
-            }
-        }
-        return minPageNo;
+
+        return Math.min(forwardPageCount,backwardPageCount);
     }
 
     public static void main(String[] args) throws IOException {//83246    //78132

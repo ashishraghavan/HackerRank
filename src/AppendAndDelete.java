@@ -13,7 +13,12 @@ public class AppendAndDelete {
         char[] S = s.toCharArray();
         char[] T = t.toCharArray();
         if(S.length == 0 || T.length == 0) {
-            return "No";
+            if(S.length == 0 && T.length > k) {
+                return "No";
+            }
+            if(T.length == 0 && S.length > k) {
+                return "No";
+            }
         }
         if(S.length >= T.length) {
             max = S.length;

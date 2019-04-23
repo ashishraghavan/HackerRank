@@ -5,15 +5,16 @@ public class Sherlock_and_Squares {
     // Complete the squares function below.
     static int squares(Integer lowerBoundary, Integer upperBoundary) {
         Integer count = 0;
-        for(Integer i = lowerBoundary; i <= upperBoundary;i++) {
-            Double value = Math.sqrt(Double.parseDouble(String.valueOf(i)));
-            //Check if value is an integer
-            if(Math.floor(value) != value || Double.isInfinite(value)) {
+        for (int i = lowerBoundary; i <= upperBoundary; i++) {
+            //Find the digit at unit's place
+            int unitPlaceDigit = i % 10;
+            if (unitPlaceDigit == 2 || unitPlaceDigit == 3 || unitPlaceDigit == 7 || unitPlaceDigit == 8) {
                 continue;
             }
-            Integer preSquaredValue = value.intValue();
-            Double squaredValue = Math.pow(preSquaredValue,2);
-            if(squaredValue.intValue() == i) {
+            Double value = Math.sqrt(i);
+            //Check if value is an integer
+            ////If the value is an integer, it must be a perfect square.
+            if (Math.floor(value) == value) {
                 count++;
             }
         }

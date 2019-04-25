@@ -20,6 +20,6 @@ public class Sherlock_and_Squares {
     public static void main(String[] args) throws IOException {
         //expected answer is
         //count of (1,4,9,16,25,36,49,64,81,100) = 10
-        System.out.println(squares(1,100));
+        System.out.println(squares(1,10));
     }
 }

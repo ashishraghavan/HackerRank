@@ -1,28 +1,33 @@
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
+import java.util.stream.IntStream;
+
 public class AppleAndOrange {
     //              Apples    Oranges
     //7, 10, 4, 12, {2,3,-4}, {3,-2,-4}
-    static void countApplesAndOranges(int houseStartingPoint, int houseEndingPoint, int appleTreeStartAndEndPoint,
-                                      int orangeTreeStartAndEndPoint, int[] apples, int[] oranges) {
-        //Apple tree is x units away from the left co-ordinate of the house.
-        int appleTreeFromHouse = Math.abs(houseStartingPoint - appleTreeStartAndEndPoint);
-        int orangeTreeFromHouse = Math.abs(houseEndingPoint - orangeTreeStartAndEndPoint);
-        //Calculate apple to house distance array
-        int applesOnHouse = 0;
-        int orangesOnHouse = 0;
-        for(int i=0;i<apples.length;i++) {
-            apples[i] += appleTreeStartAndEndPoint;
-            if(apples[i] >= houseStartingPoint) {
-                applesOnHouse++;
+    static void countApplesAndOranges(int houseStartingPoint, int houseEndingPoint, int appleTreeLocation,
+                                      int orangeTreeLocation, int[] apples, int[] oranges) {
+        //Create range of integers between house starting point and house ending point + 1
+        //IntStream stream = IntStream.rangeClosed(houseStartingPoint,houseEndingPoint);
+        int appleCount = 0;
+        int orangeCount = 0;
+        //appleTreeLocation + each value of apples = [a1,a2,a3...] check if within houseStartingPoint and houseEndingPoint inclusive
+        //orangeTreeLocation + each value of oranges = [o1,o2,o3...] check if within houseStartingPoint and houseEndingPoint inclusive
+        for(int appleLocation : apples) {
+            int applocRelativetoHouse = appleTreeLocation + appleLocation;
+            if(applocRelativetoHouse >= houseStartingPoint && applocRelativetoHouse <= houseEndingPoint) {
+                appleCount++;
             }
         }
-        for(int j=0;j<oranges.length;j++) {
-            oranges[j] += orangeTreeStartAndEndPoint;
-            if(oranges[j] <= houseEndingPoint) {
-                orangesOnHouse++;
+
+        for(int orangeLocation : oranges) {
+            int orangelocRelativeToHouse = orangeTreeLocation + orangeLocation;
+            if(orangelocRelativeToHouse <= houseEndingPoint && orangelocRelativeToHouse >= houseStartingPoint) {
+                orangeCount++;
             }
         }
-        System.out.println(applesOnHouse);
-        System.out.println(orangesOnHouse);
+        System.out.println(appleCount);
+        System.out.println(orangeCount);
     }
 
 

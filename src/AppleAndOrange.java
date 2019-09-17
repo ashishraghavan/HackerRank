@@ -1,7 +1,4 @@
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
-import java.util.stream.IntStream;
-
+//TODO : Make use of IntStream to solve this problem.
 public class AppleAndOrange {
     //              Apples    Oranges
     //7, 10, 4, 12, {2,3,-4}, {3,-2,-4}

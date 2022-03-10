@@ -50,7 +50,37 @@ public class SaveThePrisoner {
         return warningPrisoner.intValue();
     }
 
+    //cnt = 384, curr = 94731253
+    //4294967295
+    //2147483648
+    //1000000000
+    //499999999 999999997 2
+    //499999999 999999998 2
+    //999999999 999999999 1
+    static int saveThePrisonerUpdated(int n, int m, int s) {
+        long cnt = 1,curr = s;
+        while(cnt < m) {
+            if(curr > n) {
+                curr = 1;
+                continue;
+            }
+            cnt++;
+            curr++;
+            //System.out.println("cnt = "+cnt+", curr = "+curr);
+        }
+        return (int)curr;
+    }
+
     public static void main(String[] args) throws IOException {
-            System.out.println(saveThePrisoner(352926151,380324688,94730870));
+        //352926151,380324688,94730870
+        //4,6,2
+        //5,2,1
+        //5,2,2
+        //7,19,2
+        //3,7,3
+        //499999999, 999999997, 2 - 499999999
+        //499999999, 999999998, 2 - 1
+        //999999999 999999999 1 - 999999999
+        System.out.println(saveThePrisonerUpdated(499999999, 999999998, 2));
     }
 }

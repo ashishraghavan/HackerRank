@@ -2,75 +2,44 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class AppendAndDelete {
+    public static void main(String[] args) throws IOException {
+        //"abcdert","abcd",3
+        //"abcdert","abcd",11
+        //"abc","def",6
+        //"hackerhappy","hackerrank",9
+        //"aba","aba",7
+        //"ashley","ash",2
+        //"abcd", "abcdert", 10
 
-    // Complete the appendAndDelete function below.
-    static String appendAndDelete(String s, String t, int k) {
-        int max;
-        int min;
-        if(s.equals(t)) {
-            return "Yes";
-        }
-        char[] S = s.toCharArray();
-        char[] T = t.toCharArray();
-        if(S.length == 0 || T.length == 0) {
-            if(S.length == 0 && T.length > k) {
-                return "No";
-            }
-            if(T.length == 0 && S.length > k) {
-                return "No";
-            }
-        }
-        if(S.length >= T.length) {
-            max = S.length;
-        } else {
-            max = T.length;
-        }
-        int i;
-        int j;
-        //Because we are assuming that length of T will always be smaller than S, it will lead to errors
-        //like ArrayIndeOutOfBoundsException.
-        for(i =0;i < max;i++) {
-            if(i < T.length && i < S.length) {
-                if(S[i] != T[i]) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        int charRemForS = S.length - i;
-        int charRemForT = T.length - i;
-        if((charRemForS + charRemForT) > k) {
-            return "No";
-        }
-        //Start deleting characters from S.
-        //Before that, save this point
-        int previous = i;
-        int sCount   = i;
-        if(S.length < max || S.length < T.length) {
-            //Get the original value of S as a string.
-            //zzzzz | previousValue = "zzzzz";
-            String previousValue = Arrays.toString(S);
-            //tempS.length = 7;
-            char[] tempS = new char[max];
-            System.arraycopy(S, 0, tempS, 0, S.length);
-            /*for(int p= tempS.length;p<max;p++) {
-                tempS[p] = Character.MIN_VALUE;
-            }*/
-            S = tempS;
-        }
-        for(j = i;j<max;j++) {
-            S[j] = Character.MIN_VALUE;
-        }
-        for(int p = sCount;p<T.length;p++) {
-            S[previous] = T[p];
-            previous++;
-        }
-        return "Yes";
+        //"asdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcv",
+        //"asdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcvasdfqwertyuighjkzxcv", 20
+        System.out.println(appendAndDeleteUpdated("zzzzz", "zzzzzzz", 4));
+        //zzzzz + zzz ---> add 3 z's and remove 1 z for total of 4 ops and s==t
+
+        //"ab", "ab", 2
+        //"bb","bbb", 2 -- No,
+        //"bb","bbb", 3 -- Yes - add 2 b's & remove 1 b in string s
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(appendAndDelete("abcd", "abcdert", 10));
+    static String appendAndDeleteUpdated(String s, String t, int k) {
+        if(s.equals(t))
+        if((s.length() + t.length()) <= k) {
+            return "YES";
+        }
+        int i = 0,j=0;
+        while(i < s.length() && j < t.length() && (s.charAt(i) == t.charAt(j))) {
+            i++;
+            j++;
+        }
+        int slo = s.length() - i;
+        int tlo = t.length() - j;
+        if(slo == 0){
+            //no delete ops on s. tlo should be exactly equal to k
+            //i.e the no of chars to be appended to s is all remaining
+            //chars from t - chars remaining after match.
+            return (tlo == k)?"YES":"NO";
+        }
+        return ((slo + tlo)==k)?"YES":"NO";
     }
 }
 

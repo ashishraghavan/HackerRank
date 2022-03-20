@@ -8,7 +8,9 @@ public class Encryption {
         //"haveaniceday"
         //"feedthedog"
         //"chillout"
-        System.out.println(encryption("vsmejghtukjklwoaglqa vsmejghtukjklwoaglqa vsmejghtukjklwoaglqa vsmejghtukjklwoaglqab"));
+        //"vsmejghtukjklwoaglqa vsmejghtukjklwoaglqa vsmejghtukjklwoaglqa vsmejghtukjklwoaglqab"
+        //"bqepfnwndcdbaibfftha bqepfnwndcdbaibfftha bqepfnwndc"
+        System.out.println(encryption("ab"));
     }
 
     static String encryption(String s) {

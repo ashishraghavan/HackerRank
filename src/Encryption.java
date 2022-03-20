@@ -1,6 +1,5 @@
 /**
- * Not yet submitted,
- * tested for all below cases except for L after removing spaces = perfect square (81,25 etc...)
+ * Submitted, passed all test cases
  */
 public class Encryption {
     public static void main(String[] args) {

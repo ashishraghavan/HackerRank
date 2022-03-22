@@ -9,7 +9,7 @@ public class HappyLadyBugs {
     public static void main(String[] args) {
         //DD__FQ_QQF
         //AABCBC
-        System.out.println(happyLadybugs("AABBC_C"));
+        System.out.println(happyLadybugs("ZGSIKPYCRGZ_TOYCGZYIQORSGYIZZCGZSOZOGTTKROIRZ"));
     }
 
     /**
@@ -41,6 +41,9 @@ public class HappyLadyBugs {
             if(freqMap.get(ch) < 2) {
                 return "NO";
             }
+        }
+        if(freqMap.keySet().size() == 1) {
+            return "YES";
         }
         //AABBBCC_ -> 0:8 -> 0:7
         //AABCBC -> length() = 6, j: 0 -> 5
